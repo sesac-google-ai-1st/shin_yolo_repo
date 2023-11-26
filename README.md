@@ -21,8 +21,9 @@ shin_yolo_repo
 - !yolo task=detect mode=train model=yolov8m.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=800 plots=True batch=16 cache=True
 - metrics/mAP50-95(B) : 0.8268
 ![Alt text](image-1.png)
+- 위 mAP 결과와 동일하나 실제 테스트스 버스 트럭의 검출이 잘됨!!
 
 ## YOLOv8l 결과
 - !yolo task=detect mode=train model=yolov8l.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=1024 plots=True batch=8 cache=True workers=10
 - metrics/mAP50-95(B) : 0.83603
-
+- m 모델보다 predict 시간이 좀더 걸리나, 저녁 CCTV 테스트시 검출이 잘됨
