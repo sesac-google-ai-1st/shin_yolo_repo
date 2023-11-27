@@ -18,6 +18,8 @@ shin_yolo_repo
 
 ## YOLOv8m 결과 2
 - 08, 10 지점의 bus, truck 이미지 약 1만장 추가
+- train 데이터의 08, 10 지점의 bus와 truck의 바운드 박스만 처리하여 데이터 추가
+![Alt text](<Screen Shot 2023-11-27 at 2.44.51 PM.png>)
 - !yolo task=detect mode=train model=yolov8m.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=800 plots=True batch=16 cache=True
 - metrics/mAP50-95(B) : 0.8268
 ![Alt text](image-1.png)
