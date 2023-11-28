@@ -7,8 +7,11 @@ shin_yolo_repo
 
 ## EDA
 - 각 지점별 val의 차량 분포는 아래와 같습니다.  
+
 ![Alt text](val_eda.png)
+
 - 각 지점별 train의 차량 분포는 아래와 같습니다.  
+
 ![Alt text](train_eda.png)
 
 ## 추가 데이터
