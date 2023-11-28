@@ -1,0 +1,5 @@
+train: /home/shin/my_ws/shin_yolo_repo/datasets/train/images
+val: /home/shin/my_ws/shin_yolo_repo/datasets/val/images
+
+nc: 3
+names: ['car', 'bus', 'truck']
