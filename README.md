@@ -9,6 +9,7 @@ shin_yolo_repo
 - 01 ~ 04 지점의 car, truck, bus - 25 epoch
 - !yolo task=detect mode=train model=yolov8n.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=25 imgsz=800 plots=True
 - metrics/mAP50-95(B) : 0.78014
+![Alt text](nano.png)
 
 ## YOLOv8m 결과 1
 - 01 ~ 04 지점 -75 epoch
