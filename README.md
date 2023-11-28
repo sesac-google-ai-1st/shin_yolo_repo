@@ -5,6 +5,21 @@ shin_yolo_repo
 - 로컬과 실제 gcp 가 분리되어 있습니다.
 - 환경이 달라서 안되는 부분이 있을 수 있으니 감안 하시고 사용 하시기 바랍니다.
 
+## EDA
+- 각 지점별 val의 차량 분포는 아래와 같습니다.
+![Alt text](val_eda.png)
+
+- 각 지점별 train의 차량 분포는 아래와 같습니다.
+![Alt text](train_eda.png)
+
+## 추가 데이터
+- 추가 데이터는 위 표를 바탕으로 지점 08번과 지점 10번의 차량 중 버스와 트턱만 추가 하였습니다.
+- 추가한 방법은 xml에서 바운딩 박스를 car를 제외하여 txt파일을 생성 하였습니다.
+![Alt text](branch.png)
+
+## 그 외 커스텀 함수들을 만들어서 EDA에 필요한 내용들을 확인 하였습니다.
+![Alt text](custom_fn.png)
+
 ## YOLOv8n 결과
 - 01 ~ 04 지점의 car, truck, bus - 25 epoch
 - !yolo task=detect mode=train model=yolov8n.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=25 imgsz=800 plots=True
