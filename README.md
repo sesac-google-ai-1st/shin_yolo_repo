@@ -28,4 +28,5 @@ shin_yolo_repo
 ## YOLOv8l 결과
 - !yolo task=detect mode=train model=yolov8l.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=1024 plots=True batch=8 cache=True workers=10
 - metrics/mAP50-95(B) : 0.83603
+![Alt text](large.png)
 - m 모델보다 predict 시간이 좀더 걸리나, 저녁 CCTV 테스트시 검출이 잘됨
