@@ -1,5 +1,0 @@
-train: /home/jupyter/cctv_datasets/cctv_storage_20231120/train/images
-val: /home/jupyter/cctv_datasets/cctv_storage_20231120/val/images
-
-nc: 3
-names: ['car', 'bus', 'truck']
