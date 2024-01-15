@@ -166,3 +166,6 @@ ultralytics/
 backup/
 
 runs.tar.gz
+
+
+yolo*.pt
