@@ -1,5 +1,5 @@
 # shin_yolo_repo
-shin_yolo_repo 프로젝트 
+고속도로 CCTV 영상 데이터를 활용한 차량 인식 프로젝트
 
 ## YOLOV8에서 CCTV 도로 교통 상황 확인
 - 로컬과 실제 gcp 가 분리되어 있습니다.
