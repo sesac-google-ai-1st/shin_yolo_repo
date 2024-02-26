@@ -1,5 +1,7 @@
 # shin_yolo_repo
-shin_yolo_repo
+shin_yolo_repo 프로젝트 1위
+
+
 
 ## YOLOV8에서 CCTV 도로 교통 상황 확인
 - 로컬과 실제 gcp 가 분리되어 있습니다.
