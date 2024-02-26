@@ -1,5 +1,5 @@
 # shin_yolo_repo
-shin_yolo_repo 프로젝트 1위
+shin_yolo_repo 프로젝트 1위 !!
 
 
 
