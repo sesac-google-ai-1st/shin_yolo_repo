@@ -1,7 +1,5 @@
 # shin_yolo_repo
-shin_yolo_repo 프로젝트 1위 !!
-
-
+shin_yolo_repo 프로젝트 
 
 ## YOLOV8에서 CCTV 도로 교통 상황 확인
 - 로컬과 실제 gcp 가 분리되어 있습니다.
@@ -54,3 +52,8 @@ shin_yolo_repo 프로젝트 1위 !!
 ![Alt text](img/table_large.png)
 - m 모델보다 predict 시간이 좀더 걸리나, 저녁 CCTV 테스트시 검출이 잘됨
 ![Alt text](img/results_large.png)  
+
+
+## 프로젝트 결과
+
+- 고속도로 CCTV 영상 데이터를 활용한 차량 인식 프로젝트 1위!!
