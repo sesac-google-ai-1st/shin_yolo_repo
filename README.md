@@ -1,59 +1,129 @@
-# shin_yolo_repo
-고속도로 CCTV 영상 데이터를 활용한 차량 인식 프로젝트
+# Shin_YOLO_Repo
 
-## YOLOV8에서 CCTV 도로 교통 상황 확인
-- 로컬과 실제 gcp 가 분리되어 있습니다.
-- 환경이 달라서 안되는 부분이 있을 수 있으니 감안 하시고 사용 하시기 바랍니다.
+## 📌 프로젝트 개요
 
-## EDA
-- 각 지점별 val의 차량 분포는 아래와 같습니다.  
-![Alt text](img/eda_val.png)
+### 목표 🎯
+고속도로 CCTV 영상을 활용하여 차량(자동차, 트럭, 버스)을 정확히 인식하는 YOLOv8 기반 객체 탐지 모델을 개발합니다.
 
-- 각 지점별 train의 차량 분포는 아래와 같습니다.  
-![Alt text](img/eda_train.png)
+### 주요 특징 ✨
+- **YOLOv8 모델 사용**: 객체 탐지 분야의 최신 기술 활용.
+- **맞춤형 데이터셋**: 실제 고속도로 데이터를 기반으로 전처리 및 분석 진행.
+- **실제 적용 검토**: 야간 및 다양한 환경에서의 테스트를 통해 실제 활용 가능성 확인.
 
-## 추가 데이터
-- 추가 데이터는 위 표를 바탕으로 지점 08번과 지점 10번의 차량 중 버스와 트턱만 추가 하였습니다.
-- 추가한 방법은 xml에서 바운딩 박스를 car를 제외하여 txt파일을 생성 하였습니다.
-- txt 생성은 서버에서 스크립트를 사용하여 처리 하였습니다.
-![Alt text](img/eda_branch.png)
+---
 
-## 그 외 커스텀 함수들을 만들어서 EDA에 필요한 내용들을 확인 하였습니다.
-![Alt text](img/eda_custom_fn.png)
+## 📊 데이터 개요
 
-## YOLOv8n 결과
-- 01 ~ 04 지점의 car, truck, bus - 25 epoch
-- !yolo task=detect mode=train model=yolov8n.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=25 imgsz=800 plots=True
-- metrics/mAP50-95(B) : 0.78014
-![Alt text](img/table_nano.png)  
-![Alt text](img/results_nano.png)  
+### 데이터 출처 📂
+- AI Hub의 "고속도로 CCTV 교통 영상" 데이터셋.
 
+### 데이터 구성 🗂️
+- **학습 데이터**: CH01 ~ CH04 지점의 차량 데이터.
+- **추가 데이터**: 특정 지점(CH08, CH10)의 버스와 트럭 데이터를 보강하여 클래스 불균형 완화.
 
-## YOLOv8m 결과 1
-- 01 ~ 04 지점 -75 epoch
-- !yolo task=detect mode=train model=yolov8m.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=75 imgsz=800 plots=True batch=16 cache=True
-- metrics/mAP50-95(B) : 0.82405
-![Alt text](img/table_medium.png)  
-![Alt text](img/results_medium.png)  
+### 데이터 전처리 🔧
+- XML 형식의 바운딩 박스를 YOLO 텍스트 형식으로 변환.
+- 클래스 필터링을 통해 'bus'와 'truck' 데이터를 추가적으로 강화.
 
-## YOLOv8m 결과 2
-- 08, 10 지점의 bus, truck 이미지 약 1만장 추가
-- train 데이터의 08, 10 지점의 bus와 truck의 바운드 박스만 처리하여 데이터 추가
-![Alt text](img/eda_bounding.png)
-- !yolo task=detect mode=train model=yolov8m.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=800 plots=True batch=16 cache=True
-- metrics/mAP50-95(B) : 0.8268
-![Alt text](img/table_medium2.png)
-- 위 mAP 결과와 동일하나 실제 테스트스 버스 트럭의 검출이 잘됨!!
-![Alt text](img/results_medium2.png)  
+---
 
-## YOLOv8l 결과
-- !yolo task=detect mode=train model=yolov8l.pt data=/home/jupyter/cctv_datasets/cctv_storage_20231120/data.yaml epochs=100 imgsz=1024 plots=True batch=8 cache=True workers=10
-- metrics/mAP50-95(B) : 0.83603
-![Alt text](img/table_large.png)
-- m 모델보다 predict 시간이 좀더 걸리나, 저녁 CCTV 테스트시 검출이 잘됨
-![Alt text](img/results_large.png)  
+## 🤖 모델 학습 및 실험 결과
 
+### 실험 설정 ⚙️
+- **모델 버전**: YOLOv8n, YOLOv8m, YOLOv8l.
+- **학습 파라미터**:
+  - Epoch: 25~100
+  - 이미지 크기: 800~1024
+  - 배치 크기: 8~16
 
-## 프로젝트 결과
+### 결과 요약 📈
+| 모델       | 추가 데이터 | Epoch | 이미지 크기 | mAP50-95(B) | 특이 사항                     |
+|------------|-------------|-------|-------------|-------------|--------------------------------|
+| YOLOv8n    | 없음        | 25    | 800         | 0.78014     | 가장 빠른 예측 시간.          |
+| YOLOv8m    | 없음        | 75    | 800         | 0.82405     | 성능 개선.                    |
+| YOLOv8m    | 추가 데이터 | 100   | 800         | 0.8268      | 버스/트럭 검출 성능 향상.     |
+| YOLOv8l    | 추가 데이터 | 100   | 1024        | 0.83603     | 야간 테스트 성능 우수.        |
 
-- 고속도로 CCTV 영상 데이터를 활용한 차량 인식 프로젝트 1위!!
+---
+
+## 🔬 커스텀 함수 및 데이터 분석
+
+### 주요 커스텀 함수 🛠️
+- **XML to YOLO 변환**: XML 형식의 바운딩 박스를 YOLO 텍스트 형식으로 변환.
+- **EDA 도구**: 차량 클래스별 데이터 분포 및 시간대/날씨별 데이터 분석.
+
+### EDA 주요 결과 📊
+- **클래스 불균형**: 'car' 클래스 비중이 높으며, 'bus'와 'truck' 비중이 낮음.
+- **시간 및 날씨 분포**: 다양한 시간대와 날씨 조건에서의 데이터 분포 확인.
+
+---
+
+## 🚀 주요 성과 및 한계
+
+### 성과 💡
+- YOLOv8 기반으로 mAP50-95 0.83603 달성.
+- 추가 데이터 활용으로 특정 클래스(버스, 트럭) 검출 성능 향상.
+- 다양한 모델 크기 비교를 통해 성능 최적화.
+
+### 한계 ⚠️
+- 클래스 불균형으로 인한 초기 성능 저하.
+- 야간 및 저화질 영상에서의 성능 저하.
+- 모델 크기 증가에 따른 검출 속도 감소.
+
+---
+
+## 🌐 실제 적용 방안 및 확장 가능성
+
+- **실시간 교통 모니터링**: 고속도로의 차량 흐름 분석 및 교통 관리.
+- **다양한 환경 확장**: 도심, 국도 등 다른 환경에서의 모델 학습 및 테스트.
+- **경량화 모델 개발**: 실시간 검출 성능을 최적화하기 위해 YOLOv8n과 같은 경량 모델 활용.
+
+---
+
+## 📘 실행 가이드
+
+### 1. 의존성 설치 🛠️
+```bash
+pip install -r requirements.txt
+```
+
+### 2. 데이터셋 준비 📂
+- 데이터셋을 다운로드 후 `/datasets` 디렉토리에 저장.
+
+### 3. 모델 학습 ⚙️
+```bash
+yolo task=detect mode=train model=yolov8m.pt data=data.yaml epochs=75 imgsz=800 batch=16
+```
+
+### 4. 모델 평가 🧪
+```bash
+yolo task=detect mode=val model=best.pt data=data.yaml
+```
+
+### 5. 예측 결과 시각화 🔍
+```bash
+yolo task=detect mode=predict model=best.pt source=your_test_images/ save=True
+```
+
+---
+
+## 📂 프로젝트 구조
+```
+shin_yolo_repo/
+├── datasets/
+├── models/
+├── scripts/
+│   ├── preprocess.py
+│   ├── train.py
+│   ├── evaluate.py
+├── results/
+├── README.md
+```
+
+---
+
+## 📖 참고 자료
+
+- [YOLOv8 공식 문서](https://github.com/ultralytics/yolov8)
+- [AI Hub 데이터 출처](https://www.aihub.or.kr/)
+- [프로젝트 GitHub](https://github.com/sesac-google-ai-1st/shin_yolo_repo)
