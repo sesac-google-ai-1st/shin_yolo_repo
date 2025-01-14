@@ -125,6 +125,6 @@ shin_yolo_repo/
 
 ## 📖 참고 자료
 
-- [YOLOv8 공식 문서](https://github.com/ultralytics/yolov8)
+- [YOLOv8 공식 문서](https://docs.ultralytics.com/models/yolov8/)
 - [AI Hub 데이터 출처](https://www.aihub.or.kr/)
-- [프로젝트 GitHub](https://github.com/sesac-google-ai-1st/shin_yolo_repo)
+- [소유자 GitHub](https://github.com/DONGWEONSHIN/GoogleCloudAI)
